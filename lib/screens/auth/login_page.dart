@@ -23,98 +23,99 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-        child: Column(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 140,),
-                  const Text("Log In", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 20,),
-                  const FormContainerWidget(hintText: "Email or Username"),
-                  const SizedBox(height: 20,),
-                  const FormContainerWidget(hintText: "Password"),
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Checkbox(
-                            onChanged: (value) {
-                              setState(() {
-                                _rememberMeCheckValue = value!;
-                              });
-                            },
-                            value: _rememberMeCheckValue,
-                          ),
-                          const Text("Remember me", style: TextStyle(fontSize: 15),)
-                        ],
-                      ),
-                      const Text("Forget Password", style: TextStyle(color: primaryColorED6E1B, fontSize: 15),)
-                    ],
-                  ),
-                  const SizedBox(height: 20,),
-                  ButtonContainerWidget(title: "Log In", onTap: () {
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const PremiumScreen()), (route) => false);
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            child: Column(
+              children: [
+                const SizedBox(height: 140,),
+                Align(
+                    alignment: Alignment.bottomLeft,
+                    child: const Text("Log In", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                const SizedBox(height: 20,),
+                const FormContainerWidget(hintText: "Email or Username"),
+                const SizedBox(height: 20,),
+                const FormContainerWidget(hintText: "Password"),
+                const SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Checkbox(
+                          onChanged: (value) {
+                            setState(() {
+                              _rememberMeCheckValue = value!;
+                            });
+                          },
+                          value: _rememberMeCheckValue,
+                        ),
+                        const Text("Remember me", style: TextStyle(fontSize: 15),)
+                      ],
+                    ),
+                    const Text("Forget Password", style: TextStyle(color: primaryColorED6E1B, fontSize: 15),)
+                  ],
+                ),
+                const SizedBox(height: 20,),
+                ButtonContainerWidget(title: "Log In", onTap: () {
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const PremiumScreen()), (route) => false);
 
-                  },),
-                  const SizedBox(height: 20,),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          height: 1,
-                          color: Colors.black,
-                        ),
+                },),
+                const SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 1,
+                        color: Colors.black,
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text("or"),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text("or"),
+                    ),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 1,
+                        color: Colors.black,
                       ),
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          height: 1,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20,),
-                  Row(
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _optionSignIn(
+                      color: redColor,
+                      iconData: FontAwesomeIcons.google,
+                    ),
+                    _optionSignIn(
+                      color: Colors.blue[900]!,
+                      iconData: FontAwesomeIcons.facebook,
+                    ),
+                    _optionSignIn(
+                      color: Colors.blue[600]!,
+                      iconData: FontAwesomeIcons.linkedin,
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _optionSignIn(
-                        color: redColor,
-                        iconData: FontAwesomeIcons.google,
-                      ),
-                      _optionSignIn(
-                        color: Colors.blue[900]!,
-                        iconData: FontAwesomeIcons.facebook,
-                      ),
-                      _optionSignIn(
-                        color: Colors.blue[600]!,
-                        iconData: FontAwesomeIcons.linkedin,
-                      ),
+                      const Text("Don't have an account? ", style: TextStyle(fontSize: 15),),
+                      GestureDetector(onTap: () {
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => SignUpPage()), (route) => false);
+                      },child: const Text("Create account", style: TextStyle(fontSize: 15, color: primaryColorED6E1B),))
                     ],
                   ),
-
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Don't have an account? ", style: TextStyle(fontSize: 15),),
-                GestureDetector(onTap: () {
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => SignUpPage()), (route) => false);
-                },child: const Text("Create account", style: TextStyle(fontSize: 15, color: primaryColorED6E1B),))
+                ),
               ],
             ),
-          ],
+          ),
         ),
       )
     );

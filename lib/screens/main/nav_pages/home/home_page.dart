@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
                   children: [
                      Text(title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
                     const SizedBox(height: 10,),
-                    Text(description, style: TextStyle(fontSize: 15, color:Colors.grey[700]),)
+                    Expanded(child: Text(description, style: TextStyle(fontSize: 15, color:Colors.grey[700]),))
                   ],
                 ),
               ),

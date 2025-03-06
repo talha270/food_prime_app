@@ -29,52 +29,58 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.25,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Image.asset("assets/${widget.data['image']}", fit: BoxFit.contain,),
-            ),
-            const SizedBox(height: 15,),
-            _selectQuantityWidget(),
-            const SizedBox(height: 15,),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            
+            child: Column(
               children: [
-                Text("${widget.data['title']}", style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Image.asset("assets/${widget.data['image']}", fit: BoxFit.contain,),
+                ),
+                const SizedBox(height: 15,),
+                _selectQuantityWidget(),
+                const SizedBox(height: 15,),
+            
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.star, color: Colors.amber,),
-                    const SizedBox(width: 5,),
-                    Text("${widget.data['rating']}")
+                    Text("${widget.data['title']}", style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                    Row(
+                      children: [
+                        const Icon(Icons.star, color: Colors.amber,),
+                        const SizedBox(width: 5,),
+                        Text("${widget.data['rating']}")
+                      ],
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10,),
+                const Text("Chicken breast, french fries, baked potato wedges."),
+                const SizedBox(height: 15,),
+                const Row(
+                  children: [
+                    Icon(Icons.calendar_today,color: primaryColorED6E1B),
+                    SizedBox(width: 10,),
+                    Text("FREE delivery Sunday, October 23 2.00 PM")
+                  ],
+                ),
+                const SizedBox(height: 15,),
+                const Row(
+                  children: [
+                    Icon(Icons.location_on,color: primaryColorED6E1B),
+                    SizedBox(width: 10,),
+                    Text("Deliver to New York 10001")
                   ],
                 )
               ],
             ),
-            const SizedBox(height: 10,),
-            const Text("Chicken breast, french fries, baked potato wedges."),
-            const SizedBox(height: 15,),
-            const Row(
-              children: [
-                Icon(Icons.calendar_today,color: primaryColorED6E1B),
-                SizedBox(width: 10,),
-                Text("FREE delivery Sunday, October 23 2.00 PM")
-              ],
-            ),
-            const SizedBox(height: 15,),
-            const Row(
-              children: [
-                Icon(Icons.location_on,color: primaryColorED6E1B),
-                SizedBox(width: 10,),
-                Text("Deliver to New York 10001")
-              ],
-            )
-          ],
+          ),
         ),
       ),
     );
